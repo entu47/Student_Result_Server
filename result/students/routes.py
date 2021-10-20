@@ -1,19 +1,47 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
 from result.models import Mark, Student, Module
-from result import db
+from result import db, mail
+from flask_mail import Message
+import random
+import os
 student = Blueprint('student', __name__)
+
+otp = 0
+
+def generate_otp():
+	global otp
+	otp = random.randint(000000,999999)
+	return otp
 
 @student.route('/get_result', methods = ['GET', 'POST'])
 def get_result():
 	if request.method == 'POST':
 		roll_no = request.form.get('roll_no')
-		var1 = Mark.query.filter_by(stu_id=roll_no)
-		d = {}
+		var1 = Student.query.filter_by(roll_no=roll_no).first()
+		email = var1.email
+		msg = Message('OTP', sender='ak475885@gmail.com', recipients=[email])
+		msg.body = str(generate_otp())
+		# mail.login(os.environ.get('EMAIL_USER'),os.environ.get('EMAIL_PASS'))
+		mail.send(msg)
+		return render_template('validate.html', roll_no=roll_no)
+		# d = {}
 
-		for i in var1:
-			d[str(i.module.module_name)] = i.marks
-		return d
+		# for i in var1:
+		# 	d[str(i.module.module_name)] = i.marks
+		# return d
 	return render_template('result_ac.html')
+
+
+@student.route('/validate/<int:roll_no>', methods=['GET','POST'])
+def validate(roll_no):
+	if request.method == 'POST':
+		user_otp = request.form.get('user_otp')
+		if str(user_otp) == str(otp):
+			return "result sent to email"
+		else:
+			return "abe gaandu"
+
+
 @student.route('/add_sub', methods=['GET', 'POST'])
 def add_sub():
 	if request.method == 'POST':
