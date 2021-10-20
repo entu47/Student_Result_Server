@@ -3,6 +3,7 @@ from result.models import Mark, Student, Module
 from result import db, mail
 from flask_mail import Message
 import random
+import pdfkit
 import os
 student = Blueprint('student', __name__)
 
@@ -37,9 +38,18 @@ def validate(roll_no):
 	if request.method == 'POST':
 		user_otp = request.form.get('user_otp')
 		if str(user_otp) == str(otp):
-			return "result sent to email"
+			var1 = Mark.query.filter_by(stu_id=roll_no)
+			var2 = Student.query.filter_by(roll_no=roll_no).first()
+			email = var2.email
+			html = render_template('get_result.html', results=var1)
+			msg = Message('marks info', sender='ak475885@gmail.com', recipients=[email])
+			pdf = pdfkit.from_string(html, False)
+			msg.html=html
+			msg.attach("mark_report", "application/pdf", pdf)
+			mail.send(msg)
+			return "result sent to registered email"
 		else:
-			return "abe gaandu"
+			return "Agli Baar"
 
 
 @student.route('/add_sub', methods=['GET', 'POST'])
