@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+  {% block content %}
+
+     <h1>Welcome User!</h1>
+        <br>
+		<ul>
+
+		  <li><a href="{{url_for('admin.get_admin')}}">Go To Admin</a></li>
+		  <br>
+		  <li><a href="{{url_for('student.get_student')}}">Go To Student</a></li>
+
+		</ul>
+
+  {% endblock %}

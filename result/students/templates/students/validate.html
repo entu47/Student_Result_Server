@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %}
+
+	{% block content %}
+
+	     <form action="{{url_for('student.validate',roll_no=roll_no)}}" method='POST'>
+	     	<div class="form-group">
+		     	<label for="abc">Enter OTP</label>
+		     	<input id ="abc" type="number" name="user_otp" required="required" placeholder="125665">
+		    </div>
+             <br>
+	     	<button type="submit" class="btn btn-primary">Submit</button>
+	     </form>
+
+    {% endblock %}
+

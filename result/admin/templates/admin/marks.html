@@ -1,0 +1,19 @@
+{% extends 'admin/base.html' %}
+
+   {% block content %}
+      <h1>Enter Marks Obtained By Student</h1>
+      <br>
+	   <form action ="{{url_for('admin.save_marks', roll_no=roll_no)}}" method='POST'>
+	   	  {% for mark in marks %}
+               <div class="form-group">
+		   	     <label for="{{mark.mark_id}}">{{mark.sub_id}}--{{mark.module.module_name}}</label>
+
+		   	     <input type="number" id="{{mark.mark_id}}" name="{{mark.mark_id}}" required="required">
+		   	   </div>
+	   	  {% endfor %}
+
+	   	 <button type="submit" class="btn btn-primary">Submit</button>
+
+	   </form>
+
+	{% endblock %}

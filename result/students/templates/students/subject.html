@@ -1,0 +1,36 @@
+{% extends 'students/base.html' %}
+
+{% block content %}	
+  <h1> Select Your Subjects</h1>
+
+   <br>
+
+   <form method='POST' id="abc">
+
+   	 <div class="form-group">
+
+              <label for="roll_no">Enter Roll_No</label>
+
+		   	  <input type="number" id="roll_no" name="roll_no" required="required" placeholder="12345">
+		   	  
+		  </div>
+         
+         <br>
+
+		  <label for="sub-select">Choose Subjects:</label>
+        
+			<select name="sub" id="sub-select" form="abc" multiple="True" required="required" class="form-select" multiple aria-label="multiple select example>  
+            <br>
+				<option value="">--Please choose an option--</option>
+			    {% for module in modules %}
+			    <option value="{{module.module_id}}">{{module.module_name}}</option>
+			    {% endfor %}
+			</select>
+
+         <br>
+
+   	  <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+{% endblock %}

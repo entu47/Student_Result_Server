@@ -1,6 +1,6 @@
 import os
 import pymysql
-from flask import Flask
+from flask import Flask,session
 from flask_sqlalchemy import SQLAlchemy
 from result import students, admin, main
 # from flask_bcrypt import Bcrypt
@@ -25,8 +25,8 @@ mail = Mail(app)
 
 from result.students.routes import student
 from result.admin.routes import admin
-# from result.main.routes import main
+from result.main.routes import main
 
 app.register_blueprint(student)
 app.register_blueprint(admin)
-# app.register_blueprint(main)
+app.register_blueprint(main)

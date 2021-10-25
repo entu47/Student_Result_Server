@@ -1,0 +1,16 @@
+{% extends 'admin/base.html' %}
+
+   {% block content %}
+
+		<h1>Welcome Admin!</h1>
+
+		<ul>
+		  <li><a href="{{url_for('admin.add_student')}}">Register Student</a></li>
+		  <br>
+		  <li><a href="{{url_for('admin.add_module')}}">Add Module</a></li>
+		  <br>
+		  <li><a href="{{url_for('admin.update_marks')}}">Update Marks</a></li>
+		</ul>
+
+	{% endblock %}
+

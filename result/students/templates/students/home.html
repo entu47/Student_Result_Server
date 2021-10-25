@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %}
+
+  {% block content %}
+
+     <h1>Welcome Student!</h1>
+        <br>
+		<ul>
+
+		  <li><a href="{{url_for('student.get_result')}}">Get Result</a></li>
+		  <br>
+		  <li><a href="{{url_for('student.add_sub')}}">Add Subjects</a></li>
+
+		</ul>
+
+  {% endblock %}

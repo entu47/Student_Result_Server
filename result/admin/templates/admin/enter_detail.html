@@ -1,0 +1,19 @@
+{% extends 'admin/base.html' %}
+
+   {% block content %}
+         <h1>Enter Roll No</h1>
+         <br>
+		   <form method='POST'>
+              
+              <div class="form-group">
+
+              <label for="roll_no">Enter Roll_No</label>
+
+		   	  <input type="number" id="roll_no" name="roll_no" required="required" placeholder="12345">
+		   	  
+		   	  </div>
+		   	  
+		   	  <button type="submit" class="btn btn-primary">Submit</button>
+		   </form>
+
+	{% endblock %}

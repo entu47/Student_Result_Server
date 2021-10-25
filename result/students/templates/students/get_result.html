@@ -1,0 +1,21 @@
+{% extends 'students/base.html' %}
+  
+  {% block content %}
+
+	<table>
+	    <thead>
+	        <tr>
+	            <th scope="col">Subject_Name</th>
+	            <th scope="col">Marks</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    	{% for result in results %}
+		        <tr>
+		            <td>{{result.module.module_name}}</td>
+		            <td>{{result.marks}}</td>
+		        </tr>
+	        {% endfor %}
+	    </tbody>
+    </table>
+   {% endblock %}
