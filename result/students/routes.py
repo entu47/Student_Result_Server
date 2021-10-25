@@ -4,7 +4,6 @@ from result import db, mail,session
 from flask_mail import Message
 import random
 from result.students.utils import html_to_pdf,remove_resource
-import os
 student = Blueprint('student', __name__,template_folder="templates")
 
 
@@ -29,7 +28,6 @@ def get_result():
 		msg = Message('OTP', sender='ak475885@gmail.com', recipients=[email])
 		session['otp'] = str(generate_otp())
 		msg.body = session['otp']
-		# mail.login(os.environ.get('EMAIL_USER'),os.environ.get('EMAIL_PASS'))
 		mail.send(msg)
 		flash('A six digit OTP has been sent to your registered email','info')
 		return render_template('students/validate.html', roll_no=roll_no)

@@ -22,10 +22,11 @@ def remove_resource():
     
 # Parent Directory 
     parent = "/home/akhilesh/Documents/result_server-env/project1/"
+    parent1 = ""
     
 # Path 
-    path1 = os.path.join(parent, d1)
-    path2 = os.path.join(parent, d2)
+    path1 = os.path.join(parent1, d1)
+    path2 = os.path.join(parent1, d2)
     os.remove(path1)
     os.remove(path2) 
  
