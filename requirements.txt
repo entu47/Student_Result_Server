@@ -13,3 +13,4 @@ PyMySQL==1.0.2
 PyPDF2==1.26.0
 SQLAlchemy==1.4.25
 Werkzeug==2.0.2
+wkhtmltopdf==0.2
