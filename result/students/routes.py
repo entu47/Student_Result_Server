@@ -8,7 +8,7 @@ student = Blueprint('student', __name__,template_folder="templates")
 
 
 def generate_otp():
-	otp = random.randint(000000,999999)
+	otp = random.randint(111111,999999)
 	return otp
 
 @student.route('/student')

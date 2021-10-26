@@ -40,7 +40,7 @@ def add_module():
 		db.session.add(module)
 		db.session.commit()
 		flash('Module Added Successfully','success')
-		return redirect('/add_module')
+		return redirect('/admin')
 	return render_template('admin/module_register.html')
 
 
