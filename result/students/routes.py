@@ -53,7 +53,7 @@ def validate(roll_no):
 			    Lets Say Your Roll_No is 45 
 			    And Your Email is abc34@example.com
 			    Your Password is 45abc34 '''
-			    with student.open_resource("/home/akhilesh/Documents/result_server-env/project1/out.pdf") as fp:
+			    with student.open_resource("../../out.pdf") as fp:
 			    	msg.attach("out.pdf","application/pdf",fp.read())  
 			    # msg.attach("mark_report", "application/pdf", pdf)
 			    mail.send(msg)
