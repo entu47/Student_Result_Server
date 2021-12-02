@@ -1,8 +1,9 @@
+from result.main.routes import main
+from result.admin.routes import admin
+from result.students.routes import student
 import os
-import pymysql
-from flask import Flask,session
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from result import students, admin, main
 # from flask_bcrypt import Bcrypt
 # from flask_login import LoginManager
 from flask_mail import Mail
@@ -17,15 +18,12 @@ db = SQLAlchemy(app)
 # login_manager.login_message_category = 'info'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_TLS'] = False 
+app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('EMAIL')
 app.config['MAIL_PASSWORD'] = os.environ.get('PASS')
 mail = Mail(app)
 
-from result.students.routes import student
-from result.admin.routes import admin
-from result.main.routes import main
 
 app.register_blueprint(student)
 app.register_blueprint(admin)
