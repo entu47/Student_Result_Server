@@ -7,26 +7,34 @@ def html_to_pdf(file, email, roll_no):
     pdfkit.from_string(file, "in.pdf")
     out = PdfFileWriter()
     file = PdfFileReader("in.pdf")
-    num = file.numPages
-    for idx in range(num):
-        page = file.getPage(idx)
+    num_of_pages = file.numPages
+    for index in range(num_of_pages):
+        page = file.getPage(index)
         out.addPage(page)
-    enc = email.split('@')
-    password = str(roll_no) + enc[0]
+
+    password = generate_pass(email, roll_no)
     out.encrypt(password)
     with open("out.pdf", "wb") as f:
         out.write(f)
 
+# Password is roll_no followed by characters of email before @
+
+
+def generate_pass(email, roll_no):
+    email_chars = email.split('@')
+    password = str(roll_no) + email_chars[0]
+    return password
+
 
 def remove_resource():
-    d1 = "in.pdf"
-    d2 = "out.pdf"
+    resource1 = "in.pdf"
+    resource2 = "out.pdf"
 
 # Parent Directory
-    parent1 = ""
+    parent = ""
 
 # Path
-    path1 = os.path.join(parent1, d1)
-    path2 = os.path.join(parent1, d2)
+    path1 = os.path.join(parent, resource1)
+    path2 = os.path.join(parent, resource2)
     os.remove(path1)
     os.remove(path2)
