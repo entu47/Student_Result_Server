@@ -20,7 +20,7 @@ def add_student():
         if student1 or student2:
             flash('Email or Roll_No Already Taken', 'danger')
             return redirect('/add_student')
-        student = Student(roll_no=roll_no, name=name, email=email)
+        student = Student(request.form)
         db.session.add(student)
         db.session.commit()
         flash('Student Added Successfully', 'success')
@@ -37,7 +37,7 @@ def add_module():
         if module1:
             flash('Module_Id Already Taken ', 'danger')
             return redirect('/add_module')
-        module = Module(module_id=module_id, module_name=module_name)
+        module = Module(request.form)
         db.session.add(module)
         db.session.commit()
         flash('Module Added Successfully', 'success')

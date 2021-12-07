@@ -67,17 +67,17 @@ def validate(roll_no):
                     'students/get_result.html', results=mark)
 
                 html_to_pdf(html, email, roll_no)
-                body = '''Your Password is your Roll_No followed
-                           by characters of your email before '@'
-                           Lets Say Your Roll_No is 45
-                           And Your Email is abc34@example.com
-                            Your Password is 45abc34 '''
+                # body = '''Your Password is your Roll_No followed
+                #            by characters of your email before '@'
+                #            Lets Say Your Roll_No is 45
+                #            And Your Email is abc34@example.com
+                #             Your Password is 45abc34 '''
                 # with student.open_resource("../../out.pdf") as fp:
                 #     msg.attach("out.pdf", "application/pdf", fp.read())
                 # msg.attach("mark_report", "application/pdf", pdf)
 
                 message = Email(email, 'ak475885@gmail.com', 'Marks_Info',
-                                body, html)
+                                "Your FA1 Result", html)
                 message.send_email()
                 remove_resource()
                 flash("Result has been sent to your Registered Email Id !",
@@ -103,7 +103,7 @@ def add_module():
             mark = Mark.query.filter_by(stu_id=roll_no, sub_id=subject).first()
             if mark:
                 continue
-            mark_new = Mark(stu_id=roll_no, sub_id=subject, marks=0)
+            mark_new = Mark(request.form)
             db.session.add(mark_new)
         db.session.commit()
         flash('Subject Added Successfully', 'success')
